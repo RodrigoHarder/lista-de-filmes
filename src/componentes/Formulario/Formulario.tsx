@@ -2,17 +2,16 @@ import { useState } from "react"
 
 interface Filme {
     nome: string,
-    anoDeLancamento: string,
-    genero: string
+    anoDeLancamento: string
 }
 
 export const Formulario: React.FunctionComponent = () => {
 
-    const [filme, setFilme] = useState<Filme>({ nome: '', anoDeLancamento: '', genero: '' })
+    const [filme, setFilme] = useState<Filme>({ nome: '', anoDeLancamento: ''})
     const [filmes, setFilmes] = useState<Filme[]>([])
     const [erro, setErro] = useState<string>('');
 
-    const formularioValido = filme.nome && filme.anoDeLancamento && filme.genero
+    const formularioValido = filme.nome && filme.anoDeLancamento
 
     function adicionarFilme(evento: React.MouseEvent<HTMLButtonElement>) {
         if (filmes.some(f => f.nome === filme.nome)) {
@@ -38,12 +37,6 @@ export const Formulario: React.FunctionComponent = () => {
                     placeholder='Digite o ano de lançamento'
                     value={filme.anoDeLancamento}
                     onChange={evento => setFilme({ ...filme, anoDeLancamento: evento.target.value })}
-                />
-                <input
-                    type='text'
-                    placeholder='De qual gênero pertence esse filme'
-                    value={filme.genero}
-                    onChange={evento => setFilme({ ...filme, genero: evento.target.value })}
                 />
                 <button
                     type='button'
